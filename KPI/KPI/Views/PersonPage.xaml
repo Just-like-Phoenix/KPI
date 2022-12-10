@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms" xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             x:Class="KPI.Views.PersonPage"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
+                                               Light={StaticResource SecondaryLight}}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Margin="10"
+                   CornerRadius="26"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="180"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Label fname-->
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Имя:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="first_name"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+
+                    <!--Label lname-->
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Фамилия:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="last_name"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+
+                    <!--Label patronymic-->
+                    <Label Grid.Row="2"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Отчество:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="patronymic"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+
+                    <!--Label Email-->
+                    <Label Grid.Row="3"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Email:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="email"
+                           Grid.Row="3"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+
+                    <!--Label Telephone-->
+                    <Label Grid.Row="4"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Телефон:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="telephone"
+                           Grid.Row="4"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Text="KPI:"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           HorizontalTextAlignment="Center"
+                           FontSize="Default"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                        />
+                    <progressBar:SfCircularProgressBar x:Name="CircularProgressBar"
+                                                       Grid.Row="1"
+                                                       Grid.Column="3"
+                                                       Grid.RowSpan="4"
+                                                       Maximum="1"
+                                                       Progress="0.0" 
+                                                       StartAngle="0" 
+                                                       EndAngle="360"
+                                                       TrackColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
+                                                                                    Light = {StaticResource ButtonBackLight}}"
+                                                       ProgressColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                                       Light = {StaticResource AccentLight}}"
+                                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource LayoutBackDark},
+                                                                                         Light = {StaticResource LayoutBackLight}}"/>
+                </Grid>
+            </Frame>
+            <Frame Margin="10"
+                   CornerRadius="26"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <syncfusion:SfDataGrid Grid.Row="0" x:Name="person_tasksGrid" />
+                    <sfDataPager:SfDataPager x:Name="sfDataPager"
+                                             Grid.Row="1"
+                                             BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark}, Light={StaticResource LayoutBackLight}}"
+                                             ButtonShape="Rectangle"
+                                             PageCount="10"
+                                             PageSize="10"
+                                             Source="{Binding OrdersInfo}">
+                    </sfDataPager:SfDataPager>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

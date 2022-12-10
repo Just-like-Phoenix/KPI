@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             mc:Ignorable="d"
+             x:Class="KPI.Views.LoginPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
+                                               Light={StaticResource SecondaryLight}}"
+             >
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0" 
+                     VerticalOptions="Center"
+                     >
+            <Frame Padding="0"
+                   WidthRequest="400"
+                   HeightRequest="60"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <inputLayout:SfTextInputLayout x:Name="loginSettings"
+                                               ContainerType="Filled"
+                                               BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
+                                                                                 Light = {StaticResource ButtonBackLight}}"
+                                               UnfocusedColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                                                Light = {StaticResource TextLight}}"
+                                               FocusedColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                              Light = {StaticResource AccentLight}}">
+                    <Entry VerticalOptions="Center" 
+                           HorizontalOptions="Center"
+                           WidthRequest="400"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           x:Name="login"/>
+                </inputLayout:SfTextInputLayout>
+            </Frame>
+            
+
+            <Frame Padding="0"
+                   WidthRequest="400"
+                   HeightRequest="60"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center">
+                <inputLayout:SfTextInputLayout x:Name="passwordSettings"
+                                               WidthRequest="380"
+                                               ContainerType="Filled"
+                                               BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
+                                                                                 Light = {StaticResource ButtonBackLight}}"
+                                               UnfocusedColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                                                Light = {StaticResource TextLight}}"
+                                               FocusedColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                              Light = {StaticResource AccentLight}}">
+                    <Entry VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           WidthRequest="400"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           IsPassword="True"
+                           x:Name="password"/>
+                </inputLayout:SfTextInputLayout>
+            </Frame>
+            <buttons:SfButton x:Name="SfButton"
+                              VerticalOptions="Center"
+                              HorizontalOptions="Center"
+                              WidthRequest="400"
+                              HeightRequest="50"
+                              CornerRadius="6"
+                              Text="Войти"
+                              BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                Light = {StaticResource AccentLight}}"
+                              TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                          Light = {StaticResource AccentTextLight}}"
+                              Clicked="Login_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

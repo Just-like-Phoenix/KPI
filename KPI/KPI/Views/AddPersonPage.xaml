@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="KPI.Views.AddPersonPage"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
+                                               Light={StaticResource SecondaryLight}}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Margin="10"
+                   CornerRadius="26"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <FlexLayout HorizontalOptions="CenterAndExpand"
+                            HeightRequest="100"
+                            >
+                    <!--Label "personnel"-->
+                    <Label HeightRequest="60"
+                           Margin="20"
+                           FlexLayout.AlignSelf="Start"
+                           FlexLayout.Order="1"
+                           FlexLayout.Grow="1"
+                           FontSize="Large"
+                           Text="Добавление сотрудника"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                </FlexLayout>
+            </Frame>
+            <Frame Margin="10"
+                   CornerRadius="26"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <!--Add button-->
+                <buttons:SfButton x:Name="addButton"
+                                      WidthRequest="180"
+                                      HeightRequest="60"
+                                      Margin="20"
+                                      CornerRadius="6"
+                                      FlexLayout.Order="2"
+                                      Text="Добавить сотрудника"
+                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                        Light = {StaticResource AccentLight}}"
+                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                                  Light = {StaticResource AccentTextLight}}"
+                                      />
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
