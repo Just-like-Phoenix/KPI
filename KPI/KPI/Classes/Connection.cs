@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using App3.ViewModels;
 using KPI.Models;
 using KPI.ViewModels;
@@ -92,7 +93,13 @@ namespace KPI.Classes
             }
             return persons;
         }
-        
+
+        public ObservableCollection<Task> GetTasks()
+        {
+            ObservableCollection<Task> tasks = new ObservableCollection<Task>();
+            return tasks;
+        }
+
         public void Disconnect()
         {
             string sendmsg = "exit|&|";

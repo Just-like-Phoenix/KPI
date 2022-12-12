@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:local="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="KPI.App">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
@@ -96,6 +97,22 @@
                              Color="{DynamicResource AccentLight}"
                              Glyph="&#xe9ba;">
             </FontImageSource>
+
+            <!--
+            Grid Style
+            -->
+            
+            <syncfusion:DefaultStyle x:Key="customStyle" 
+                                     HeaderBackgroundColor="{AppThemeBinding Dark={StaticResource ButtonBackDark}, Light={StaticResource ButtonBackLight}}"
+                                     HeaderForegroundColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
+                                     HeaderCellBorderColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
+                                     
+                                     RowBackgroundColor="{AppThemeBinding Dark={StaticResource ButtonBackDark}, Light={StaticResource ButtonBackLight}}"
+                                     RowForegroundColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
+                                     GridCellBorderColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
+                                     
+                                     SelectionBackgroundColor="{AppThemeBinding Dark={StaticResource AccentDark}, Light={StaticResource AccentLight}}"
+                                     SelectionForegroundColor="{AppThemeBinding Dark={StaticResource AccentTextDark}, Light={StaticResource AccentTextLight}}"/>
 
             <Style TargetType="Button">
                 <Setter Property="VisualStateManager.VisualStateGroups">

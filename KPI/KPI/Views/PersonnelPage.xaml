@@ -104,10 +104,13 @@
                    >
                 <StackLayout>
                     <syncfusion:SfDataGrid x:Name="personsGrid"
-                                           BackgroundColor="Aqua"
+                                           GridStyle="{StaticResource customStyle}"
+                                           AllowColumnSelection="True"
+                                           SelectionMode="SingleDeselect"
+                                           SelectionUnit="Row"
                                            AllowSorting="True"
-                                           CanUseViewFilter="True"
                                            AllowTriStateSorting="True"
+                                           CanUseViewFilter="True"
                                            ColumnSizer="Star">
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UUID" MappingName="uuid"/>
