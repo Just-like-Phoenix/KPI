@@ -1,5 +1,4 @@
-﻿using App3.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace KPI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PersonPage : ContentPage
+    public partial class AddMeneger : ContentPage
     {
-        public PersonPage()
+        public AddMeneger()
         {
             InitializeComponent();
-            var ViewModel = new BaseViewModel();
-            sfDataPager.Source = ViewModel.PersonTasksGrid;
-            person_tasksGrid.ItemsSource = sfDataPager.PagedSource;
         }
     }
 }

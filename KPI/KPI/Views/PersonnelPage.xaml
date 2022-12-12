@@ -5,8 +5,9 @@
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
              xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
-             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="KPI.Views.PersonnelPage"
+             Appearing="ContentPage_Appearing"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
     <ContentPage.Content>
@@ -32,6 +33,7 @@
                            />
                     <!--Add button-->
                     <buttons:SfButton x:Name="addButton"
+                                      Clicked="addButton_Clicked"
                                       WidthRequest="180"
                                       HeightRequest="60"
                                       Margin="20"
@@ -100,7 +102,28 @@
                    BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
                                                      Light={StaticResource LayoutBackLight}}"
                    >
-                <syncfusion:SfDataGrid x:Name="personnelGrid" />
+                <StackLayout>
+                    <syncfusion:SfDataGrid x:Name="personsGrid"
+                                           BackgroundColor="Aqua"
+                                           AllowSorting="True"
+                                           CanUseViewFilter="True"
+                                           AllowTriStateSorting="True"
+                                           ColumnSizer="Star">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="UUID" MappingName="uuid"/>
+                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="UPID" MappingName="upid"/>
+                            <syncfusion:GridTextColumn HeaderText="Имя" MappingName="name"/>
+                            <syncfusion:GridTextColumn HeaderText="Фамилия" MappingName="surname"/>
+                            <syncfusion:GridTextColumn HeaderText="Отчество" MappingName="patronymic"/>
+                            <syncfusion:GridTextColumn HeaderText="Email" MappingName="email"/>
+                            <syncfusion:GridTextColumn HeaderText="Телефон" MappingName="telephone"/>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+                    <sfDataPager:SfDataPager x:Name="sfDataPager"
+                                             HorizontalOptions="CenterAndExpand"
+                                             PageSize="10">
+                    </sfDataPager:SfDataPager>
+                </StackLayout>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

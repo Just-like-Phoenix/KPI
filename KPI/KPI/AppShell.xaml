@@ -101,15 +101,15 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="Главная" Icon="{AppThemeBinding Dark={StaticResource HomeDark}, Light={StaticResource HomeLight}}">
-        <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}">
+    <FlyoutItem x:Name="Main" Title="Главная" Icon="{AppThemeBinding Dark={StaticResource HomeDark}, Light={StaticResource HomeLight}}">
+        <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}">
         </ShellContent>
     </FlyoutItem>
-    <FlyoutItem Title="Сотрудники" Icon="{AppThemeBinding Dark={StaticResource PersonnelDark}, Light={StaticResource PersonnelLight}}">
+    <FlyoutItem x:Name="Employees" Title="Сотрудники" Icon="{AppThemeBinding Dark={StaticResource PersonnelDark}, Light={StaticResource PersonnelLight}}">
         <ShellContent Route="PersonnelPage" ContentTemplate="{DataTemplate local:PersonnelPage}">
         </ShellContent>
     </FlyoutItem>
-    <FlyoutItem Title="Сотрудник" Icon="{AppThemeBinding Dark={StaticResource PersonDark}, Light={StaticResource PersonLight}}">
+    <FlyoutItem x:Name="Employee" Title="Сотрудник" Icon="{AppThemeBinding Dark={StaticResource PersonDark}, Light={StaticResource PersonLight}}">
         <ShellContent Route="PersonPage" ContentTemplate="{DataTemplate local:PersonPage}">
         </ShellContent>
     </FlyoutItem>
@@ -128,6 +128,9 @@
     -->
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}" />
     </TabBar>
 
     <!-- Optional Templates 

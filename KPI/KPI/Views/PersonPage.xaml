@@ -173,21 +173,24 @@
                    BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
                                                      Light={StaticResource LayoutBackLight}}"
                    >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <syncfusion:SfDataGrid Grid.Row="0" x:Name="person_tasksGrid" />
+                <StackLayout>
+                    <syncfusion:SfDataGrid x:Name="person_tasksGrid"
+                                           ColumnSizer="Star"
+                                           BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark}, Light={StaticResource LayoutBackLight}}">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn HeaderText="Задача" MappingName="task_Text"/>
+                            <syncfusion:GridTextColumn HeaderText="Нужно выполнить" MappingName="count_to_do"/>
+                            <syncfusion:GridTextColumn HeaderText="Выполненно" MappingName="count_of_complited"/>
+                            <syncfusion:GridTextColumn HeaderText="Начальная дата" MappingName="task_start_date"/>
+                            <syncfusion:GridTextColumn HeaderText="Крайний срок" MappingName="task_end_date"/>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
                     <sfDataPager:SfDataPager x:Name="sfDataPager"
-                                             Grid.Row="1"
+                                             HorizontalOptions="CenterAndExpand"
                                              BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark}, Light={StaticResource LayoutBackLight}}"
-                                             ButtonShape="Rectangle"
-                                             PageCount="10"
-                                             PageSize="10"
-                                             Source="{Binding OrdersInfo}">
+                                             PageSize="10">
                     </sfDataPager:SfDataPager>
-                </Grid>
+                </StackLayout>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

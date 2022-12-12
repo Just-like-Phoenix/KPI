@@ -1,5 +1,6 @@
 ﻿using KPI.Services;
 using KPI.Views;
+using KPI.Classes;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,11 +12,15 @@ namespace KPI
         
         public static string passwordMemory { set; get; }
         public static string loginMemory { set; get; }
+        public static int loginpram { set; get; }
 
         public App()
         {
             InitializeComponent();
 
+            Connection connection = new Connection();
+            Connection.SetConnection(connection);
+            loginpram = 0;
             passwordMemory = string.Empty;
             loginMemory = string.Empty;
             DependencyService.Register<MockDataStore>();

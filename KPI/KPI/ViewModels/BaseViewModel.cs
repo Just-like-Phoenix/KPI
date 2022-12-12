@@ -2,6 +2,7 @@
 using KPI.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -10,7 +11,8 @@ namespace App3.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public ObservableCollection<PersonTask> PersonTasksGrid { get; set; }
+        public ObservableCollection<Persons> PersonsGrid { get; set; }
 
         bool isBusy = false;
         public bool IsBusy
