@@ -31,6 +31,16 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
+                </FlexLayout>
+            </Frame>
+            <Frame Margin="10"
+                   CornerRadius="26"
+                   HorizontalOptions="CenterAndExpand"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <FlexLayout JustifyContent="Center"
+                            HeightRequest="100">
                     <!--Add button-->
                     <buttons:SfButton x:Name="addButton"
                                       Clicked="addButton_Clicked"
@@ -38,62 +48,55 @@
                                       HeightRequest="60"
                                       Margin="20"
                                       CornerRadius="6"
-                                      FlexLayout.Order="2"
+                                      FlexLayout.Order="1"
                                       Text="Добавить сотрудника"
                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
                                                                         Light = {StaticResource AccentLight}}"
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
                                                                   Light = {StaticResource AccentTextLight}}"
                                       />
-                </FlexLayout>
-            </Frame>
-            <Frame Margin="10"
-                   CornerRadius="26"
-                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
-                                                     Light={StaticResource LayoutBackLight}}"
-                   >
-                <FlexLayout HorizontalOptions="CenterAndExpand"
-                            HeightRequest="100"
-                            >
-                    <!--Search input-->
-                    <Frame Padding="0"
-                           Margin="20"
-                           WidthRequest="180"
-                           HeightRequest="60"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           >
-                        <inputLayout:SfTextInputLayout x:Name="searchSettings"
-                                                       ContainerType="Filled"
-                                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
-                                                                                         Light = {StaticResource ButtonBackLight}}"
-                                                       UnfocusedColor="{AppThemeBinding Dark = {StaticResource TextDark},
-                                                                                        Light = {StaticResource TextLight}}"
-                                                       FocusedColor="{AppThemeBinding Dark = {StaticResource AccentDark},
-                                                                                      Light = {StaticResource AccentLight}}">
-                            <Entry VerticalOptions="Center"
-                                   WidthRequest="400"
-                                   HorizontalOptions="Center"
-                                   TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
-                                                           Light = {StaticResource TextLight}}"
-                                   />
-                        </inputLayout:SfTextInputLayout>
-                    </Frame>
-
-                    <!--Search button-->
-                    <buttons:SfButton x:Name="searchButton"
+                    <!--Delete button-->
+                    <buttons:SfButton x:Name="deleteButton"
+                                      Clicked="deleteButton_Clicked"
                                       WidthRequest="180"
                                       HeightRequest="60"
                                       Margin="20"
                                       CornerRadius="6"
                                       FlexLayout.Order="2"
-                                      Text="Найти"
+                                      Text="Удалить"
                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
                                                                         Light = {StaticResource AccentLight}}"
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
                                                                   Light = {StaticResource AccentTextLight}}"
                                       />
-                    
+                    <!--Update button-->
+                    <buttons:SfButton x:Name="updateButton"
+                                      Clicked="updateButton_Clicked"
+                                      WidthRequest="180"
+                                      HeightRequest="60"
+                                      Margin="20"
+                                      CornerRadius="6"
+                                      FlexLayout.Order="3"
+                                      Text="Изменить"
+                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                        Light = {StaticResource AccentLight}}"
+                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                                  Light = {StaticResource AccentTextLight}}"
+                                      />
+                    <!--GoTo Person button-->
+                    <buttons:SfButton x:Name="gotopersonButton"
+                                      Clicked="gotopersonButton_Clicked"
+                                      WidthRequest="180"
+                                      HeightRequest="60"
+                                      Margin="20"
+                                      CornerRadius="6"
+                                      FlexLayout.Order="4"
+                                      Text="Перейти"
+                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                        Light = {StaticResource AccentLight}}"
+                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                                  Light = {StaticResource AccentTextLight}}"
+                                      />
 
                 </FlexLayout>
             </Frame>
@@ -106,12 +109,12 @@
                     <syncfusion:SfDataGrid x:Name="personsGrid"
                                            GridStyle="{StaticResource customStyle}"
                                            AllowColumnSelection="True"
-                                           SelectionMode="SingleDeselect"
+                                           SelectionMode="Multiple"
                                            SelectionUnit="Row"
                                            AllowSorting="True"
                                            AllowTriStateSorting="True"
-                                           CanUseViewFilter="True"
-                                           ColumnSizer="Star">
+                                           ColumnSizer="Star"
+                                           SelectionChanged="personsGrid_SelectionChanged">
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UUID" MappingName="uuid"/>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UPID" MappingName="upid"/>

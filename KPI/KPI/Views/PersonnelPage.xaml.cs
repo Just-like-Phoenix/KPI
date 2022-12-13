@@ -1,8 +1,12 @@
 ﻿using App3.ViewModels;
 using KPI.Classes;
+using KPI.Models;
+using Syncfusion.Data;
+using Syncfusion.SfDataGrid.XForms;
 using Syncfusion.SfDataGrid.XForms.DataPager;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +24,11 @@ namespace KPI.Views
 
             InitializeComponent();
 
-            sfDataPager.AppearanceManager = new CustomAppearance();
+            deleteButton.IsVisible = false;
+            updateButton.IsVisible = false;
+            gotopersonButton.IsVisible = false;
 
-            searchSettings.Hint = "Поиск";
-            searchSettings.EnableHintAnimation = true;
+            sfDataPager.AppearanceManager = new App.CustomAppearance();
         }
 
         private void addButton_Clicked(object sender, EventArgs e)
@@ -31,89 +36,54 @@ namespace KPI.Views
             Shell.Current.GoToAsync("//AddPersonPage");
         }
 
+        private void deleteButton_Clicked(object sender, EventArgs e)
+        {
+            Persons person = personsGrid.SelectedItem as Persons;
+            Connection connection = Connection.GetConnection();
+            connection.DelPerson(person.uuid);
+        }
+
+        private void updateButton_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void gotopersonButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
         private void ContentPage_Appearing(object sender, EventArgs e)
         {
             Connection connection = Connection.GetConnection();
-
-
             var ViewModel = new BaseViewModel();
-            ViewModel.PersonsGrid = connection.GetPersons();
+            ViewModel.PersonsGrid = connection.GetWorkerPersons();
             sfDataPager.Source = ViewModel.PersonsGrid;
             personsGrid.ItemsSource = sfDataPager.PagedSource;
         }
 
-        public class CustomAppearance : AppearanceManager
+        private void personsGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-            OSAppTheme currentTheme = Application.Current.RequestedTheme;
-
-            public override Color GetDataPagerBackgroundColor()
+            if (personsGrid.SelectionController.SelectedRows.Count == 0)
             {
-                Color color;
-                if (currentTheme == OSAppTheme.Dark)
-                {
-                    color = Color.FromHex("#2d2d2d");
-                }
-                else
-                {
-                    color = Color.FromHex("#ffffff");
-                }
-                return color;
+                addButton.IsVisible = true;
+                deleteButton.IsVisible = false;
+                updateButton.IsVisible = false;
+                gotopersonButton.IsVisible = false;
             }
-
-            public override Color GetNumericButtonBackgroundColor(ButtonShape shape = ButtonShape.Rectangle)
+            if (personsGrid.SelectionController.SelectedRows.Count == 1)
             {
-                Color color;
-                if (currentTheme == OSAppTheme.Dark)
-                {
-                    color = Color.FromHex("#393939");
-                }
-                else
-                {
-                    color = Color.FromHex("#f8f8f8");
-                }
-                return color;
+                addButton.IsVisible = true;
+                deleteButton.IsVisible = true;
+                updateButton.IsVisible = true;
+                gotopersonButton.IsVisible = true;
             }
-
-            public override Color GetNumericButtonForegroundColor()
+            if (personsGrid.SelectionController.SelectedRows.Count > 1)
             {
-                Color color;
-                if (currentTheme == OSAppTheme.Dark)
-                {
-                    color = Color.FromHex("#ffffff");
-                }
-                else
-                {
-                    color = Color.FromHex("#000000");
-                }
-                return color;
-            }
-
-            public override Color GetNumericButtonSelectionBackgroundColor()
-            {
-                Color color;
-                if (currentTheme == OSAppTheme.Dark)
-                {
-                    color = Color.FromHex("#7eff60");
-                }
-                else
-                {
-                    color = Color.FromHex("#03b800");
-                }
-                return color;
-            }
-
-            public override Color GetNumericButtonSelectionForegroundColor()
-            {
-                Color color;
-                if (currentTheme == OSAppTheme.Dark)
-                {
-                    color = Color.FromHex("#081216");
-                }
-                else
-                {
-                    color = Color.FromHex("#e5eff8");
-                }
-                return color;
+                addButton.IsVisible = true;
+                deleteButton.IsVisible = true;
+                updateButton.IsVisible = false;
+                gotopersonButton.IsVisible = false;    
             }
         }
     }

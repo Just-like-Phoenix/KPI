@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms" xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
              x:Class="KPI.Views.PersonPage"
+             Appearing="ContentPage_Appearing"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
     <ContentPage.Content>
@@ -175,8 +176,14 @@
                    >
                 <StackLayout>
                     <syncfusion:SfDataGrid x:Name="person_tasksGrid"
-                                           ColumnSizer="Star"
-                                           BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark}, Light={StaticResource LayoutBackLight}}">
+                                           GridStyle="{StaticResource customStyle}"
+                                           AllowColumnSelection="True"
+                                           SelectionMode="SingleDeselect"
+                                           SelectionUnit="Row"
+                                           AllowSorting="True"
+                                           AllowTriStateSorting="True"
+                                           CanUseViewFilter="True"
+                                           ColumnSizer="Star">
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:GridTextColumn HeaderText="Задача" MappingName="task_Text"/>
                             <syncfusion:GridTextColumn HeaderText="Нужно выполнить" MappingName="count_to_do"/>
@@ -187,7 +194,6 @@
                     </syncfusion:SfDataGrid>
                     <sfDataPager:SfDataPager x:Name="sfDataPager"
                                              HorizontalOptions="CenterAndExpand"
-                                             BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark}, Light={StaticResource LayoutBackLight}}"
                                              PageSize="10">
                     </sfDataPager:SfDataPager>
                 </StackLayout>

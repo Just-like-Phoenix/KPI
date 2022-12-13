@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
@@ -47,6 +48,12 @@ namespace KPI.Classes
             Writer.Flush();
             int loginpram = 0;
             string recvmsg = Reader.ReadLine();
+            string[] recvarr = recvmsg.Split('&');
+            try
+            {
+                App.logineduserid = recvarr[1];
+            }
+            catch { }
             if (recvmsg.Contains("root")) { loginpram = 3; }
             if (recvmsg.Contains("meneger")) { loginpram = 2; }
             if (recvmsg.Contains("worker")) { loginpram = 1; }
@@ -67,9 +74,9 @@ namespace KPI.Classes
             return AddSuccessfully;
         }
         
-        public ObservableCollection<Persons> GetPersons()
+        public ObservableCollection<Persons> GetWorkerPersons()
         {
-            string sendmsg = "select_persons|&|";
+            string sendmsg = "select_worker_persons|&|";
             Writer.WriteLine(sendmsg);
             Writer.Flush();
 
@@ -92,6 +99,35 @@ namespace KPI.Classes
                 persons.Add(person);
             }
             return persons;
+        }
+
+        public object GetPerson(int uuid) 
+        {
+            Persons person = new Persons();
+
+            string sendmsg = "select_person_by_uuid|&|" + uuid.ToString();
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+
+            string recvmsg = Reader.ReadLine();
+            string[] recvarr = recvmsg.Split('&');
+
+            person.upid = int.Parse(recvarr[0]);
+            person.uuid = int.Parse(recvarr[1]);
+            person.name = recvarr[2];
+            person.surname = recvarr[3];
+            person.patronymic = recvarr[4];
+            person.email = recvarr[5];
+            person.telephone = recvarr[6];
+
+            return person;
+        }
+
+        public void DelPerson(int uuid)
+        {
+            string sendmsg = "delete_person_by_uuid|&|" + uuid.ToString();
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
         }
 
         public ObservableCollection<Task> GetTasks()
