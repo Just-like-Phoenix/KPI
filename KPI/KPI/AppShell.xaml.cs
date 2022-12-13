@@ -17,7 +17,7 @@ namespace KPI
 
             if (App.loginpram == 3)
             {
-
+                Employee.IsVisible = false;
             }
             if (App.loginpram == 2)
             {
