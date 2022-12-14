@@ -7,6 +7,7 @@
              xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
              x:Class="KPI.Views.PersonnelPage"
+             Disappearing="ContentPage_Disappearing"
              Appearing="ContentPage_Appearing"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">

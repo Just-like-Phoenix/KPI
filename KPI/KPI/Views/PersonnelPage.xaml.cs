@@ -33,25 +33,38 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//AddPersonPage");
+            Shell.Current.GoToAsync("AddPersonPage");
         }
 
         private void deleteButton_Clicked(object sender, EventArgs e)
         {
-            Persons person = personsGrid.SelectedItem as Persons;
             Connection connection = Connection.GetConnection();
-            connection.DelPerson(person.uuid);
+            for (int i = 0; i < personsGrid.SelectedItems.Count; i++)
+            {
+                Persons person = personsGrid.SelectedItems[i] as Persons;
+                connection.DelPerson(person.uuid);
+            }
+            var ViewModel = new BaseViewModel();
+            ViewModel.PersonsGrid = connection.GetWorkerPersons();
+            sfDataPager.Source = ViewModel.PersonsGrid;
+            personsGrid.ItemsSource = sfDataPager.PagedSource;
         }
 
         private void updateButton_Clicked(object sender, EventArgs e)
         {
             EditPersonPage.person = personsGrid.SelectedItem as Persons;
-            Shell.Current.GoToAsync("//EditPersonPage");
+            Shell.Current.GoToAsync("EditPersonPage");
         }
 
         private void gotopersonButton_Clicked(object sender, EventArgs e)
         {
-
+            if (personsGrid.SelectedItems.Count == 1)
+            {
+                Persons person = personsGrid.SelectedItem as Persons;
+                PersonPage.uuid_from_grid = person.uuid;
+                PersonPage.isMeneger = true;
+                Shell.Current.GoToAsync("PersonPage");
+            }
         }
 
         private void ContentPage_Appearing(object sender, EventArgs e)
@@ -61,6 +74,14 @@ namespace KPI.Views
             ViewModel.PersonsGrid = connection.GetWorkerPersons();
             sfDataPager.Source = ViewModel.PersonsGrid;
             personsGrid.ItemsSource = sfDataPager.PagedSource;
+        }
+
+        private void ContentPage_Disappearing(object sender, EventArgs e)
+        {
+            addButton.IsVisible = true;
+            deleteButton.IsVisible = false;
+            updateButton.IsVisible = false;
+            gotopersonButton.IsVisible = false;
         }
 
         private void personsGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)

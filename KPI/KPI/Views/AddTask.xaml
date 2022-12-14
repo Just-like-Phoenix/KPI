@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncmaskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
-             x:Class="KPI.Views.EditMenegerPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:syncmaskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms.Renderers;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:syncfusionpicker="clr-namespace:Syncfusion.XForms.Pickers;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="KPI.Views.AddTask"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
     <ContentPage.Content>
@@ -21,7 +25,7 @@
                            FlexLayout.Order="1"
                            FlexLayout.Grow="1"
                            FontSize="Large"
-                           Text="Редоктирование сотрудника"
+                           Text="Добавление задачи"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -37,22 +41,20 @@
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="250"/>
                     </Grid.ColumnDefinitions>
 
-                    <!--Name Input-->
+                    <!--Task text Input-->
                     <Label Grid.Row="0"
                            Grid.Column="0"
                            HeightRequest="20"
                            Margin="0"
                            VerticalTextAlignment="Center"
                            FontSize="Default"
-                           Text="Имя:"
+                           Text="Задача:"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -62,7 +64,7 @@
                            BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
                                                                                  Light = {StaticResource ButtonBackLight}}"
                            >
-                        <syncmaskededit:SfMaskedEdit x:Name="nameEdit"
+                        <syncmaskededit:SfMaskedEdit x:Name="task_text"
                                                      TextColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
                                                      BorderColor="Transparent"
                                                      ErrorBorderColor="Transparent"
@@ -71,14 +73,14 @@
                                                      MaskType="RegEx"
                                                      Mask=""/>
                     </Frame>
-                    <!--Surname Input-->
+                    <!--Task need to do Input-->
                     <Label Grid.Row="1"
                            Grid.Column="0"
                            HeightRequest="20"
                            Margin="0"
                            VerticalTextAlignment="Center"
                            FontSize="Default"
-                           Text="Фамилия:"
+                           Text="Нужно выполнить:"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -88,7 +90,7 @@
                            BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
                                                                                  Light = {StaticResource ButtonBackLight}}"
                            >
-                        <syncmaskededit:SfMaskedEdit x:Name="surnameEdit"
+                        <syncmaskededit:SfMaskedEdit x:Name="need_to_do"
                                                      TextColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
                                                      BorderColor="Transparent"
                                                      ErrorBorderColor="Transparent"
@@ -97,14 +99,14 @@
                                                      MaskType="RegEx"
                                                      Mask=""/>
                     </Frame>
-                    <!--Patronymic Input-->
+                    <!--Start Date Input-->
                     <Label Grid.Row="2"
                            Grid.Column="0"
                            HeightRequest="20"
                            Margin="0"
                            VerticalTextAlignment="Center"
                            FontSize="Default"
-                           Text="Отчество:"
+                           Text="Начальная дата:"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -112,68 +114,20 @@
                            Grid.Column="1"
                            Padding="0"
                            BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
-                                                                                 Light = {StaticResource ButtonBackLight}}"
+                                                             Light = {StaticResource ButtonBackLight}}"
                            >
-                        <syncmaskededit:SfMaskedEdit x:Name="patronymicEdit"
-                                                     TextColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
-                                                     BorderColor="Transparent"
-                                                     ErrorBorderColor="Transparent"
-                                                     BackgroundColor="Transparent"
-                                                     HorizontalTextAlignment="Start"
-                                                     MaskType="RegEx"
-                                                     Mask=""/>
-                    </Frame>
-                    <!--Email Input-->
-                    <Label Grid.Row="3"
-                           Grid.Column="0"
-                           HeightRequest="20"
-                           Margin="0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Default"
-                           Text="Email:"
-                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
-                                                       Light = {StaticResource TextLight}}"
-                           />
-                    <Frame Grid.Row="3"
-                           Grid.Column="1"
-                           Padding="0"
-                           BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
-                                                                                 Light = {StaticResource ButtonBackLight}}"
-                           >
-                        <syncmaskededit:SfMaskedEdit x:Name="emailEdit"
-                                                     TextColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
-                                                     BorderColor="Transparent"
-                                                     ErrorBorderColor="Transparent"
-                                                     BackgroundColor="Transparent"
-                                                     HorizontalTextAlignment="Start"
-                                                     MaskType="RegEx"
-                                                     Mask="[a-z0-9A-Z@_#*()-/$]*"/>
-                    </Frame>
-                    <!--Telephone Input-->
-                    <Label Grid.Row="4"
-                           Grid.Column="0"
-                           HeightRequest="20"
-                           Margin="0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Default"
-                           Text="Телефон:"
-                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
-                                                       Light = {StaticResource TextLight}}"
-                           />
-                    <Frame Grid.Row="4"
-                           Grid.Column="1"
-                           Padding="0"
-                           BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
-                                                                                 Light = {StaticResource ButtonBackLight}}"
-                           >
-                        <syncmaskededit:SfMaskedEdit x:Name="telephoneEdit"
-                                                     TextColor="{AppThemeBinding Dark={StaticResource TextDark}, Light={StaticResource TextLight}}"
-                                                     BorderColor="Transparent"
-                                                     ErrorBorderColor="Transparent"
-                                                     BackgroundColor="Transparent"
-                                                     HorizontalTextAlignment="Start"
-                                                     MaskType="RegEx"
-                                                     Mask="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}"/>
+                        <syncfusionpicker:SfDatePicker x:Name="startdate"
+                                                       ShowHeader="False"
+                                                       ShowFooter="False"
+                                                       ShowColumnHeader="False"
+                                                       PickerMode="Default"
+                                                       BorderColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
+                                                                                     Light = {StaticResource ButtonBackLight}}"
+                                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
+                                                                                         Light = {StaticResource ButtonBackLight}}"
+                                                       SelectedItemTextColor="{AppThemeBinding Dark = {StaticResource TextDark}, Light={StaticResource TextLight}}"
+                                                       SelectionBackgroundColor="Transparent"
+                                                       />
                     </Frame>
                 </Grid>
             </Frame>
@@ -182,14 +136,14 @@
                    BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
                                                      Light={StaticResource LayoutBackLight}}"
                    >
-                <!--Upd button-->
-                <buttons:SfButton x:Name="updButton"
-                                  Clicked="updButton_Clicked"
+                <!--Add button-->
+                <buttons:SfButton x:Name="addButton"
+                                  Clicked="addButton_Clicked"
                                       WidthRequest="180"
                                       HeightRequest="60"
                                       Margin="20"
                                       CornerRadius="6"
-                                      Text="Подтвердить"
+                                      Text="Добавить задачу"
                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
                                                                         Light = {StaticResource AccentLight}}"
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},

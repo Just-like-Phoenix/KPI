@@ -26,19 +26,6 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-                    <buttons:SfButton x:Name="exitButton"
-                                      Clicked="exitButton_Clicked"
-                                      WidthRequest="180"
-                                      HeightRequest="60"
-                                      Margin="20"
-                                      CornerRadius="6"
-                                      FlexLayout.Order="2"
-                                      Text="Отменить"
-                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
-                                                                        Light = {StaticResource AccentLight}}"
-                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
-                                                                  Light = {StaticResource AccentTextLight}}"
-                                      />
                 </FlexLayout>
             </Frame>
             <Frame Margin="10"

@@ -1,4 +1,5 @@
-﻿using Syncfusion.XForms.UWP.Border;
+﻿using Syncfusion.XForms.Pickers.UWP;
+using Syncfusion.XForms.UWP.Border;
 using Syncfusion.XForms.UWP.Buttons;
 using Syncfusion.XForms.UWP.MaskedEdit;
 using Syncfusion.XForms.UWP.TextInputLayout;
@@ -75,6 +76,7 @@ namespace KPI.UWP
                 assembliesToInclude.Add(typeof(Syncfusion.SfChart.XForms.UWP.SfChartRenderer).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.ProgressBar.SfLinearProgressRenderer).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(Syncfusion.XForms.UWP.ProgressBar.SfCircularProgressBarRenderer).GetTypeInfo().Assembly);
+                assembliesToInclude.Add(typeof(SfDatePickerRenderer).GetTypeInfo().Assembly);
                 assembliesToInclude.Add(typeof(SfMaskedEditRenderer).GetTypeInfo().Assembly);
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 

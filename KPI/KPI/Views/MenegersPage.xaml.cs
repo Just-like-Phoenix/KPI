@@ -28,19 +28,28 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//AddMenegerPage");
+            Shell.Current.GoToAsync("AddMenegerPage");
         }
 
         private void deleteButton_Clicked(object sender, EventArgs e)
         {
-            Persons person = menegerGrid.SelectedItem as Persons;
             Connection connection = Connection.GetConnection();
-            connection.DelPerson(person.uuid);
+            for(int i = 0; i < menegerGrid.SelectedItems.Count; i++)
+            {
+                Persons person = menegerGrid.SelectedItems[i] as Persons;
+                connection.DelPerson(person.uuid);
+            }
+            var ViewModel = new BaseViewModel();
+            ViewModel.PersonsGrid = connection.GetMenegerPersons();
+            sfDataPager.Source = ViewModel.PersonsGrid;
+            menegerGrid.ItemsSource = sfDataPager.PagedSource;
         }
 
         private void updateButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//EditMenegerPage");
+
+            EditMenegerPage.person = menegerGrid.SelectedItem as Persons;
+            Shell.Current.GoToAsync("EditMenegerPage");
         }
 
         private void ContentPage_Appearing(object sender, EventArgs e)

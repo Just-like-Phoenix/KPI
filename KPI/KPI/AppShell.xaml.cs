@@ -16,18 +16,15 @@ namespace KPI
             Routing.RegisterRoute("AddPersonPage", typeof(AddPersonPage));
             Routing.RegisterRoute("EditPersonPage", typeof(EditPersonPage));
             Routing.RegisterRoute("PersonnelPage", typeof(PersonnelPage));
-
+            Routing.RegisterRoute("PersonPage", typeof(PersonPage));
             Routing.RegisterRoute("AddMenegerPage", typeof(AddMenegerPage));
             Routing.RegisterRoute("EditMenegerPage", typeof(EditMenegerPage));
             Routing.RegisterRoute("MenegersPage", typeof(MenegersPage));
+            Routing.RegisterRoute("AddTask", typeof(AddTask));
 
             if (App.loginpram == 3)
             {
-<<<<<<< HEAD
-                
-=======
                 Employee.IsVisible = false;
->>>>>>> 479f7fcb561407316f00ff25d2c7e6167a128aa7
             }
             if (App.loginpram == 2)
             {

@@ -33,10 +33,5 @@ namespace KPI.Views
             Connection connection = Connection.GetConnection();
             connection.Update("" + person.uuid, nameEdit.Value.ToString(), surnameEdit.Value.ToString(), patronymicEdit.Value.ToString(), emailEdit.Value.ToString(), telephoneEdit.Value.ToString(), "" + person.salry);
         }
-
-        private void exitButton_Clicked(object sender, EventArgs e)
-        {
-            Shell.Current.GoToAsync("//MenegersPage");
-        }
     }
 }

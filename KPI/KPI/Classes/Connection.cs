@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using App3.ViewModels;
 using KPI.Models;
 using KPI.ViewModels;
+using Syncfusion.SfDataGrid.XForms;
+using Xamarin.Essentials;
 
 namespace KPI.Classes
 {
@@ -163,8 +166,14 @@ namespace KPI.Classes
             person.name = recvarr[2];
             person.surname = recvarr[3];
             person.patronymic = recvarr[4];
-            person.email = recvarr[5];
-            person.telephone = recvarr[6];
+            person.salry = double.Parse(recvarr[5]);
+            if (recvarr[6] != "")
+            {
+                person.award = double.Parse(recvarr[6]);
+            }
+            else person.award = 0;
+            person.email = recvarr[7];
+            person.telephone = recvarr[8];
 
             return person;
         }
@@ -175,10 +184,19 @@ namespace KPI.Classes
             Writer.WriteLine(sendmsg);
             Writer.Flush();
         }
+        public void AddTask(int uuid, string task_text, int count_to_do )
+        {
+            string sendmsg = "add_task|&|" + uuid + "|&|" + task_text + "|&|" + count_to_do;
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+        }
 
-        public ObservableCollection<Task> GetTasks()
+        public ObservableCollection<Task> GetTasks(int uuid)
         {
             ObservableCollection<Task> tasks = new ObservableCollection<Task>();
+            string sendmsg = "select_task|&|" + uuid.ToString();
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
             return tasks;
         }
 

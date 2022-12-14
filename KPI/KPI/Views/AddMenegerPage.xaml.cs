@@ -42,10 +42,5 @@ namespace KPI.Views
                 Shell.Current.GoToAsync("//MenegersPage");
             }
         }
-
-        private void exitButton_Clicked(object sender, EventArgs e)
-        {
-            Shell.Current.GoToAsync("//MenegersPage");
-        }
     }
 }

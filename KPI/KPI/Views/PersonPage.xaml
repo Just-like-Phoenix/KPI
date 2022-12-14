@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms" xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms" xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="KPI.Views.PersonPage"
              Appearing="ContentPage_Appearing"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
@@ -20,11 +20,13 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0"/>
                         <ColumnDefinition Width="70"/>
-                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="150"/>
                         <ColumnDefinition Width="180"/>
                     </Grid.ColumnDefinitions>
 
@@ -50,7 +52,6 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-
                     <!--Label lname-->
                     <Label Grid.Row="1"
                            Grid.Column="1"
@@ -73,7 +74,6 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-
                     <!--Label patronymic-->
                     <Label Grid.Row="2"
                            Grid.Column="1"
@@ -96,19 +96,18 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-
-                    <!--Label Email-->
+                    <!--Label salary-->
                     <Label Grid.Row="3"
                            Grid.Column="1"
                            HeightRequest="20"
                            Margin="0"
                            VerticalTextAlignment="Center"
                            FontSize="Default"
-                           Text="Email:"
+                           Text="Оклад:"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-                    <Label x:Name="email"
+                    <Label x:Name="salary"
                            Grid.Row="3"
                            Grid.Column="2"
                            HeightRequest="20"
@@ -119,19 +118,18 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-
-                    <!--Label Telephone-->
+                    <!--Label award-->
                     <Label Grid.Row="4"
                            Grid.Column="1"
                            HeightRequest="20"
                            Margin="0"
                            VerticalTextAlignment="Center"
                            FontSize="Default"
-                           Text="Телефон:"
+                           Text="Премия:"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
-                    <Label x:Name="telephone"
+                    <Label x:Name="award"
                            Grid.Row="4"
                            Grid.Column="2"
                            HeightRequest="20"
@@ -142,6 +140,51 @@
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
+                    <!--Label Email-->
+                    <Label Grid.Row="5"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Email:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="email"
+                           Grid.Row="5"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <!--Label Telephone-->
+                    <Label Grid.Row="6"
+                           Grid.Column="1"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="Телефон:"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    <Label x:Name="telephone"
+                           Grid.Row="6"
+                           Grid.Column="2"
+                           HeightRequest="20"
+                           Margin="0"
+                           VerticalTextAlignment="Center"
+                           FontSize="Default"
+                           Text="TEST"
+                           TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
+                                                       Light = {StaticResource TextLight}}"
+                           />
+                    
                     <Label Grid.Row="0"
                            Grid.Column="3"
                            Text="KPI:"
@@ -156,7 +199,7 @@
                     <progressBar:SfCircularProgressBar x:Name="CircularProgressBar"
                                                        Grid.Row="1"
                                                        Grid.Column="3"
-                                                       Grid.RowSpan="4"
+                                                       Grid.RowSpan="6"
                                                        Maximum="1"
                                                        Progress="0.0" 
                                                        StartAngle="0" 
@@ -168,6 +211,31 @@
                                                        BackgroundColor="{AppThemeBinding Dark = {StaticResource LayoutBackDark},
                                                                                          Light = {StaticResource LayoutBackLight}}"/>
                 </Grid>
+            </Frame>
+            <Frame x:Name="ButtonsFrame"
+                   Margin="10"
+                   CornerRadius="26"
+                   HorizontalOptions="CenterAndExpand"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource LayoutBackDark},
+                                                     Light={StaticResource LayoutBackLight}}"
+                   >
+                <FlexLayout JustifyContent="Center"
+                            HeightRequest="100">
+                    <!--Add button-->
+                    <buttons:SfButton x:Name="addButton"
+                                      Clicked="addButton_Clicked"
+                                      WidthRequest="180"
+                                      HeightRequest="60"
+                                      Margin="20"
+                                      CornerRadius="6"
+                                      FlexLayout.Order="1"
+                                      Text="Добавить задачу"
+                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                        Light = {StaticResource AccentLight}}"
+                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                                  Light = {StaticResource AccentTextLight}}"
+                                      />
+                </FlexLayout>
             </Frame>
             <Frame Margin="10"
                    CornerRadius="26"
