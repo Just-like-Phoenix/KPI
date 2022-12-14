@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncmaskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
-             x:Class="KPI.Views.AddPersonPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncmaskededit="clr-namespace:Syncfusion.XForms.MaskedEdit;assembly=Syncfusion.SfMaskedEdit.XForms"
+             x:Class="KPI.Views.AddMenegerPage"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
     <ContentPage.Content>
@@ -22,7 +21,7 @@
                            FlexLayout.Order="1"
                            FlexLayout.Grow="1"
                            FontSize="Large"
-                           Text="Добавление сотрудника"
+                           Text="Добавление менеджера"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -85,6 +84,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask="[a-z0-9A-Z]+"/>
                     </Frame>
@@ -111,6 +111,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask="[a-z0-9A-Z]+"/>
                     </Frame>
@@ -137,6 +138,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask=""/>
                     </Frame>
@@ -163,6 +165,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask=""/>
                     </Frame>
@@ -189,6 +192,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask=""/>
                     </Frame>
@@ -215,6 +219,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask="\d+"/>
                     </Frame>
@@ -241,6 +246,7 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
                                                      Mask="[a-z0-9A-Z@_#*()-/$]*"/>
                     </Frame>
@@ -267,8 +273,9 @@
                                                      ErrorBorderColor="Transparent"
                                                      BackgroundColor="Transparent"
                                                      HorizontalTextAlignment="Start"
+                                                     ValidationMode="KeyPress"
                                                      MaskType="RegEx"
-                                                     Mask="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}"/>                                                     
+                                                     Mask="[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}"/>
                     </Frame>
                 </Grid>
             </Frame>
@@ -280,16 +287,15 @@
                 <!--Add button-->
                 <buttons:SfButton x:Name="addButton"
                                   Clicked="addButton_Clicked"
-                                      WidthRequest="180"
-                                      HeightRequest="60"
-                                      Margin="20"
-                                      CornerRadius="6"
-                                      Text="Добавить сотрудника"
-                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
-                                                                        Light = {StaticResource AccentLight}}"
-                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
-                                                                  Light = {StaticResource AccentTextLight}}"
-                                      />
+                                  WidthRequest="180"
+                                  HeightRequest="60"
+                                  Margin="20"
+                                  CornerRadius="6"
+                                  Text="Добавить менеджера"
+                                  BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                    Light = {StaticResource AccentLight}}"
+                                  TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                              Light = {StaticResource AccentTextLight}}"/>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

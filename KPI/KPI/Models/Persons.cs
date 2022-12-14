@@ -13,5 +13,7 @@ namespace KPI.Models
         public string patronymic { get; set; }
         public string email { get; set; }
         public string telephone { get; set; }
+        public double salry { get; set; }
+        public double award { get; set; }
     }
 }

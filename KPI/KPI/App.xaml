@@ -55,6 +55,12 @@
                              Color="{DynamicResource AccentDark}"
                              Glyph="&#xe9ba;">
             </FontImageSource>
+            <!--MANAGE-->
+            <FontImageSource x:Key="ManageDark" FontFamily="Material"
+                             Size="Header"
+                             Color="{DynamicResource AccentDark}"
+                             Glyph="&#xf02e;">
+            </FontImageSource>
 
             <!--
             Light Theme Colors
@@ -96,6 +102,12 @@
                              Size="Header"
                              Color="{DynamicResource AccentLight}"
                              Glyph="&#xe9ba;">
+            </FontImageSource>
+            <!--MANAGE-->
+            <FontImageSource x:Key="ManageLight" FontFamily="Material"
+                             Size="Header"
+                             Color="{DynamicResource AccentLight}"
+                             Glyph="&#xf02e;">
             </FontImageSource>
 
             <!--

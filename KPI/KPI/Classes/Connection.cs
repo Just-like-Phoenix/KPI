@@ -61,7 +61,7 @@ namespace KPI.Classes
             return loginpram;
         }
 
-        public bool AddWorker(string login, string password, string name, string surname, string patronymic, string email, string telephone, string position, string salary)
+        public bool AddPerson(string login, string password, string name, string surname, string patronymic, string email, string telephone, string position, string salary)
         {
             string sendmsg = "add_worker|&|" + login + "|&|" + password + "|&|" + name + "|&|" + surname + "|&|" + patronymic + "|&|" + email + "|&|" + telephone + "|&|" + position + "|&|" + salary;
             Writer.WriteLine(sendmsg);
@@ -73,7 +73,14 @@ namespace KPI.Classes
             if (recvmsg.Contains("false")) { AddSuccessfully = false; }
             return AddSuccessfully;
         }
-        
+
+        public void Update(string uuid, string name, string surname, string patronymic, string email, string telephone, string salary)
+        {
+            string sendmsg = "update_by_uuid|&|" + uuid + "|&|" + name + "|&|" + surname + "|&|" + patronymic + "|&|" + email + "|&|" + telephone + "|&|" + salary;
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+        }
+
         public ObservableCollection<Persons> GetWorkerPersons()
         {
             string sendmsg = "select_worker_persons|&|";
@@ -96,6 +103,45 @@ namespace KPI.Classes
                 person.patronymic = recvarr[4];
                 person.email = recvarr[5];
                 person.telephone = recvarr[6];
+                person.salry = double.Parse(recvarr[7]);
+                if (recvarr[8] != "")
+                {
+                    person.award = double.Parse(recvarr[8]);
+                }
+                else person.award = 0;
+                persons.Add(person);
+            }
+            return persons;
+        }
+
+        public ObservableCollection<Persons> GetMenegerPersons()
+        {
+            string sendmsg = "select_meneger_persons|&|";
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+
+            ObservableCollection<Persons> persons = new ObservableCollection<Persons>();
+            string[] recvarr;
+            string recvmsg = Reader.ReadLine();
+            int count = int.Parse(recvmsg);
+            for (int i = 0; i < count; i++)
+            {
+                recvmsg = Reader.ReadLine();
+                recvarr = recvmsg.Split('&');
+                Persons person = new Persons();
+                person.upid = int.Parse(recvarr[0]);
+                person.uuid = int.Parse(recvarr[1]);
+                person.name = recvarr[2];
+                person.surname = recvarr[3];
+                person.patronymic = recvarr[4];
+                person.email = recvarr[5];
+                person.telephone = recvarr[6];
+                person.salry = double.Parse(recvarr[7]);
+                if (recvarr[8] != "")
+                {
+                    person.award = double.Parse(recvarr[8]);
+                }
+                else person.award = 0;
                 persons.Add(person);
             }
             return persons;

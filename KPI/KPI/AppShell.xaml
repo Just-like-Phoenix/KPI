@@ -105,6 +105,10 @@
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}">
         </ShellContent>
     </FlyoutItem>
+    <FlyoutItem x:Name="Menegers" Title="Менеджеры" Icon="{AppThemeBinding Dark={StaticResource ManageDark}, Light={StaticResource ManageLight}}">
+        <ShellContent Route="MenegersPage" ContentTemplate="{DataTemplate local:MenegersPage}">
+        </ShellContent>
+    </FlyoutItem>
     <FlyoutItem x:Name="Employees" Title="Сотрудники" Icon="{AppThemeBinding Dark={StaticResource PersonnelDark}, Light={StaticResource PersonnelLight}}">
         <ShellContent Route="PersonnelPage" ContentTemplate="{DataTemplate local:PersonnelPage}">
         </ShellContent>
@@ -127,10 +131,19 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}"/>
     </TabBar>
     <TabBar>
-        <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}" />
+        <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}"/>
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="AddMenegerPage" ContentTemplate="{DataTemplate local:AddMenegerPage}"/>
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="EditPersonPage" ContentTemplate="{DataTemplate local:EditPersonPage}"/>
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="EditMenegerPage" ContentTemplate="{DataTemplate local:EditMenegerPage}"/>
     </TabBar>
 
     <!-- Optional Templates 

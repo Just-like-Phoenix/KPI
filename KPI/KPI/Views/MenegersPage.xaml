@@ -1,12 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
-             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
-             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="KPI.Views.PersonnelPage"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" xmlns:sfDataPager="clr-namespace:Syncfusion.SfDataGrid.XForms.DataPager;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="KPI.Views.MenegersPage"
              Appearing="ContentPage_Appearing"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
@@ -27,7 +22,7 @@
                            FlexLayout.Order="1"
                            FlexLayout.Grow="1"
                            FontSize="Large"
-                           Text="Сотрудники"
+                           Text="Менеджеры"
                            TextColor="{AppThemeBinding Dark = {StaticResource TextDark},
                                                        Light = {StaticResource TextLight}}"
                            />
@@ -49,7 +44,7 @@
                                       Margin="20"
                                       CornerRadius="6"
                                       FlexLayout.Order="1"
-                                      Text="Добавить сотрудника"
+                                      Text="Добавить менеджера"
                                       BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
                                                                         Light = {StaticResource AccentLight}}"
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
@@ -83,21 +78,6 @@
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
                                                                   Light = {StaticResource AccentTextLight}}"
                                       />
-                    <!--GoTo Person button-->
-                    <buttons:SfButton x:Name="gotopersonButton"
-                                      Clicked="gotopersonButton_Clicked"
-                                      WidthRequest="180"
-                                      HeightRequest="60"
-                                      Margin="20"
-                                      CornerRadius="6"
-                                      FlexLayout.Order="4"
-                                      Text="Перейти"
-                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
-                                                                        Light = {StaticResource AccentLight}}"
-                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
-                                                                  Light = {StaticResource AccentTextLight}}"
-                                      />
-
                 </FlexLayout>
             </Frame>
             <Frame Margin="10"
@@ -106,7 +86,7 @@
                                                      Light={StaticResource LayoutBackLight}}"
                    >
                 <StackLayout>
-                    <syncfusion:SfDataGrid x:Name="personsGrid"
+                    <syncfusion:SfDataGrid x:Name="menegerGrid"
                                            GridStyle="{StaticResource customStyle}"
                                            AllowColumnSelection="True"
                                            SelectionMode="Multiple"
@@ -114,7 +94,7 @@
                                            AllowSorting="True"
                                            AllowTriStateSorting="True"
                                            ColumnSizer="Star"
-                                           SelectionChanged="personsGrid_SelectionChanged">
+                                           SelectionChanged="menegerGrid_SelectionChanged">
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UUID" MappingName="uuid"/>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UPID" MappingName="upid"/>
@@ -123,8 +103,8 @@
                             <syncfusion:GridTextColumn HeaderText="Отчество" MappingName="patronymic"/>
                             <syncfusion:GridTextColumn HeaderText="Email" MappingName="email"/>
                             <syncfusion:GridTextColumn HeaderText="Телефон" MappingName="telephone"/>
-                            <syncfusion:GridTextColumn HeaderText="Оклад" MappingName="salry"/>
-                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="Награда" MappingName="award"/>
+                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="Оклад" MappingName="salry"/>
+                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="Телефон" MappingName="award"/>
                         </syncfusion:SfDataGrid.Columns>
                     </syncfusion:SfDataGrid>
                     <sfDataPager:SfDataPager x:Name="sfDataPager"
