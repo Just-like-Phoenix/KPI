@@ -22,6 +22,11 @@ namespace KPI.Views
         public PersonPage()
         {
             InitializeComponent();
+
+            Routing.RegisterRoute("AddTask", typeof(AddTask));
+            Routing.RegisterRoute("PersonPage", typeof(PersonPage));
+
+
             if (isMeneger == false)
             {
                 ButtonsFrame.IsVisible = false;
@@ -62,7 +67,7 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//PersonnelPage/PersonPage/AddTask");
+            Shell.Current.GoToAsync("PersonPage/AddTask");
         }
     }
 }

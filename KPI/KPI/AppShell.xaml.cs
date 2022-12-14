@@ -20,7 +20,6 @@ namespace KPI
             Routing.RegisterRoute("AddMenegerPage", typeof(AddMenegerPage));
             Routing.RegisterRoute("EditMenegerPage", typeof(EditMenegerPage));
             Routing.RegisterRoute("MenegersPage", typeof(MenegersPage));
-            Routing.RegisterRoute("AddTask", typeof(AddTask));
 
             if (App.loginpram == 3)
             {
@@ -42,6 +41,11 @@ namespace KPI
         {
             Connection.GetConnection().Disconnect();
             await Shell.Current.GoToAsync("//LoginPage");
+        }
+
+        protected override async void OnNavigated(ShellNavigatedEventArgs args)
+        {
+            base.OnNavigated(args);
         }
     }
 }

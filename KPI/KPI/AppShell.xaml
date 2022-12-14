@@ -6,6 +6,7 @@
        x:Class="KPI.AppShell"
        FlyoutBackgroundColor="{AppThemeBinding Dark={StaticResource PrimaryDark},
                                                Light={StaticResource PrimaryLight}}"
+       Shell.PresentationMode="Modal"
 >
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
