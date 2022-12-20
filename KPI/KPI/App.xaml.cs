@@ -28,7 +28,7 @@ namespace KPI
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
 
-            Shell.Current.GoToAsync("//LoginPage");
+            AppShell.Current.GoToAsync("//LoginPage");
         }
         protected override void OnStart()
         {

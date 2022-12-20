@@ -102,37 +102,50 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Route="HomePage" x:Name="Main" Title="Главная" Icon="{AppThemeBinding Dark={StaticResource HomeDark}, Light={StaticResource HomeLight}}">
+    <FlyoutItem Route="HomePage" x:Name="Main" Title="Главная" IsVisible="False" Icon="{AppThemeBinding Dark={StaticResource HomeDark}, Light={StaticResource HomeLight}}">
         <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}">
         </ShellContent>
     </FlyoutItem>
+
     <FlyoutItem Route="MenegersPage" x:Name="Menegers" Title="Менеджеры" Icon="{AppThemeBinding Dark={StaticResource ManageDark}, Light={StaticResource ManageLight}}">
         <ShellContent Route="MenegersPage" ContentTemplate="{DataTemplate local:MenegersPage}">
         </ShellContent>
     </FlyoutItem>
+    <!---->
+        <FlyoutItem Route="AddMenegerPage" x:Name="AddMeneger" IsVisible="False">
+            <ShellContent Route="AddMenegerPage" ContentTemplate="{DataTemplate local:AddMenegerPage}"/>
+        </FlyoutItem>
+
+        <FlyoutItem Route="EditMenegerPage" x:Name="EditMeneger" IsVisible="False">
+            <ShellContent Route="EditMenegerPage" ContentTemplate="{DataTemplate local:EditMenegerPage}"/>
+        </FlyoutItem>
+    <!---->
+    
     <FlyoutItem Route="PersonnelPage" x:Name="Employees" Title="Сотрудники" Icon="{AppThemeBinding Dark={StaticResource PersonnelDark}, Light={StaticResource PersonnelLight}}">
         <ShellContent Route="PersonnelPage" ContentTemplate="{DataTemplate local:PersonnelPage}">
         </ShellContent>
     </FlyoutItem>
-    <FlyoutItem Route="PersonPage" x:Name="Employee" Title="Сотрудник" Icon="{AppThemeBinding Dark={StaticResource PersonDark}, Light={StaticResource PersonLight}}">
-        <ShellContent Route="PersonPage" ContentTemplate="{DataTemplate local:PersonPage}">
-        </ShellContent>
-    </FlyoutItem>
-    <FlyoutItem Route="AddPersonPage" x:Name="AddPerson" IsVisible="False">
-        <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}"/>
-    </FlyoutItem>
-    <FlyoutItem Route="AddMenegerPage" x:Name="AddMeneger" IsVisible="False">
-        <ShellContent Route="AddMenegerPage" ContentTemplate="{DataTemplate local:AddMenegerPage}"/>
-    </FlyoutItem>
+    <!---->
+        <FlyoutItem Route="AddPersonPage" x:Name="AddPerson" IsVisible="False">
+            <ShellContent Route="AddPersonPage" ContentTemplate="{DataTemplate local:AddPersonPage}">
+            </ShellContent>
+        </FlyoutItem>
+
     <FlyoutItem Route="EditPersonPage" x:Name="EditPerson" IsVisible="False">
-        <ShellContent Route="EditPersonPage" ContentTemplate="{DataTemplate local:EditPersonPage}"/>
-    </FlyoutItem>
-    <FlyoutItem Route="EditMenegerPage" x:Name="EditMeneger" IsVisible="False">
-        <ShellContent Route="EditMenegerPage" ContentTemplate="{DataTemplate local:EditMenegerPage}"/>
-    </FlyoutItem>
-    <FlyoutItem Route="AddTask" x:Name="AddTask" IsVisible="False">
-        <ShellContent Route="AddTask" ContentTemplate="{DataTemplate local:AddTask}"/>
-    </FlyoutItem>
+            <ShellContent Route="EditPersonPage" ContentTemplate="{DataTemplate local:EditPersonPage}">
+            </ShellContent>
+        </FlyoutItem>
+        
+        <FlyoutItem Route="PersonPage" x:Name="Employee" Title="Сотрудник" Icon="{AppThemeBinding Dark={StaticResource PersonDark}, Light={StaticResource PersonLight}}">
+            <ShellContent Route="PersonPage" ContentTemplate="{DataTemplate local:PersonPage}">
+            </ShellContent>
+        </FlyoutItem>
+        <!---->
+        <TabBar>
+            <ShellContent Route="AddTask" ContentTemplate="{DataTemplate local:AddTask}"/>
+        </TabBar>
+        <!---->
+    <!---->
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Выйти" IconImageSource="{AppThemeBinding Dark={StaticResource LogoutDark}, Light={StaticResource LogoutLight}}" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

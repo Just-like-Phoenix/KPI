@@ -29,9 +29,16 @@ namespace KPI.Views
 
         private void updButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("//MenegersPage");
-            Connection connection = Connection.GetConnection();
-            connection.Update("" + person.uuid, nameEdit.Value.ToString(), surnameEdit.Value.ToString(), patronymicEdit.Value.ToString(), emailEdit.Value.ToString(), telephoneEdit.Value.ToString(), "" + person.salry);
+            if (nameEdit.Value.ToString() != "" && surnameEdit.Value.ToString() != "" && patronymicEdit.Value.ToString() != "" && emailEdit.Value.ToString() != "" && telephoneEdit.Value.ToString() != "")
+            {
+                Shell.Current.GoToAsync("//MenegersPage");
+                Connection connection = Connection.GetConnection();
+                connection.Update("" + person.uuid, nameEdit.Value.ToString(), surnameEdit.Value.ToString(), patronymicEdit.Value.ToString(), emailEdit.Value.ToString(), telephoneEdit.Value.ToString(), "" + person.salry);
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("Ошибка ввода", "Данные введены неверно", "Ок");
+            }
         }
     }
 }

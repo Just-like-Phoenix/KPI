@@ -61,6 +61,12 @@
                              Color="{DynamicResource AccentDark}"
                              Glyph="&#xf02e;">
             </FontImageSource>
+            <!--TOOLBARITEMCLOSE-->
+            <FontImageSource x:Key="CloseDark" FontFamily="Material"
+                             Size="Header"
+                             Color="{DynamicResource TextDark}"
+                             Glyph="&#xe5cd;">
+            </FontImageSource>
 
             <!--
             Light Theme Colors
@@ -108,6 +114,12 @@
                              Size="Header"
                              Color="{DynamicResource AccentLight}"
                              Glyph="&#xf02e;">
+            </FontImageSource>
+            <!--TOOLBARITEMCLOSE-->
+            <FontImageSource x:Key="CloseLight" FontFamily="Material"
+                             Size="Header"
+                             Color="{DynamicResource TextLight}"
+                             Glyph="&#xe5cd;">
             </FontImageSource>
 
             <!--

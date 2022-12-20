@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace KPI.Views
@@ -33,7 +34,7 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("AddPersonPage");
+            AppShell.Current.GoToAsync("//PersonnelPage/AddPersonPage");
         }
 
         private void deleteButton_Clicked(object sender, EventArgs e)
@@ -53,7 +54,7 @@ namespace KPI.Views
         private void updateButton_Clicked(object sender, EventArgs e)
         {
             EditPersonPage.person = personsGrid.SelectedItem as Persons;
-            Shell.Current.GoToAsync("EditPersonPage");
+            AppShell.Current.GoToAsync("//PersonnelPage/EditPersonPage");
         }
 
         private void gotopersonButton_Clicked(object sender, EventArgs e)
@@ -62,13 +63,18 @@ namespace KPI.Views
             {
                 Persons person = personsGrid.SelectedItem as Persons;
                 PersonPage.uuid_from_grid = person.uuid;
-                PersonPage.isMeneger = true;
-                Shell.Current.GoToAsync("PersonPage");
+                PersonPage.ueid_from_grid = person.ueid;
+                PersonPage.upid_from_grid = person.upid;
             }
+            AppShell.Current.GoToAsync("//PersonnelPage/PersonPage");
         }
 
         private void ContentPage_Appearing(object sender, EventArgs e)
         {
+            addButton.IsVisible = true;
+            deleteButton.IsVisible = false;
+            updateButton.IsVisible = false;
+            gotopersonButton.IsVisible = false;
             Connection connection = Connection.GetConnection();
             var ViewModel = new BaseViewModel();
             ViewModel.PersonsGrid = connection.GetWorkerPersons();
@@ -86,26 +92,33 @@ namespace KPI.Views
 
         private void personsGrid_SelectionChanged(object sender, GridSelectionChangedEventArgs e)
         {
-            if (personsGrid.SelectionController.SelectedRows.Count == 0)
+        }
+
+        private void personsGrid_GridTapped(object sender, GridTappedEventArgs e)
+        {
+            if (e.RowColumnIndex.RowIndex != 0)
             {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = false;
-                updateButton.IsVisible = false;
-                gotopersonButton.IsVisible = false;
-            }
-            if (personsGrid.SelectionController.SelectedRows.Count == 1)
-            {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = true;
-                updateButton.IsVisible = true;
-                gotopersonButton.IsVisible = true;
-            }
-            if (personsGrid.SelectionController.SelectedRows.Count > 1)
-            {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = true;
-                updateButton.IsVisible = false;
-                gotopersonButton.IsVisible = false;    
+                if (personsGrid.SelectionController.SelectedRows.Count == 0)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = false;
+                    updateButton.IsVisible = false;
+                    gotopersonButton.IsVisible = false;
+                }
+                if (personsGrid.SelectionController.SelectedRows.Count == 1)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = true;
+                    updateButton.IsVisible = true;
+                    gotopersonButton.IsVisible = true;
+                }
+                if (personsGrid.SelectionController.SelectedRows.Count > 1)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = true;
+                    updateButton.IsVisible = false;
+                    gotopersonButton.IsVisible = false;
+                }
             }
         }
     }

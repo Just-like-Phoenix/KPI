@@ -8,6 +8,10 @@
              x:Class="KPI.Views.AddTask"
              BackgroundColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
                                                Light={StaticResource SecondaryLight}}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{AppThemeBinding Dark={StaticResource CloseDark}, Light={StaticResource CloseLight}}"
+                     Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <Frame Margin="10"
@@ -40,7 +44,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
                         <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="105"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -121,6 +125,8 @@
                                                        ShowFooter="False"
                                                        ShowColumnHeader="False"
                                                        PickerMode="Default"
+                                                       Format="dd_MM_yyyy"
+                                                       EnableLooping="True"
                                                        BorderColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},
                                                                                      Light = {StaticResource ButtonBackLight}}"
                                                        BackgroundColor="{AppThemeBinding Dark = {StaticResource ButtonBackDark},

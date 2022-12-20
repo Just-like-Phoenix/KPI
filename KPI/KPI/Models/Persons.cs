@@ -8,6 +8,7 @@ namespace KPI.Models
     {
         public int uuid { get; set; }
         public int upid { get; set; }
+        public int ueid { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string patronymic { get; set; }

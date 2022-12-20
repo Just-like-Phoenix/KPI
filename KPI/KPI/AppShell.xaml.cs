@@ -13,13 +13,21 @@ namespace KPI
         {
             InitializeComponent();
 
-            Routing.RegisterRoute("AddPersonPage", typeof(AddPersonPage));
-            Routing.RegisterRoute("EditPersonPage", typeof(EditPersonPage));
+            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute("PersonnelPage", typeof(PersonnelPage));
-            Routing.RegisterRoute("PersonPage", typeof(PersonPage));
-            Routing.RegisterRoute("AddMenegerPage", typeof(AddMenegerPage));
-            Routing.RegisterRoute("EditMenegerPage", typeof(EditMenegerPage));
+            {
+                Routing.RegisterRoute("AddPersonPage", typeof(AddPersonPage));
+                Routing.RegisterRoute("EditPersonPage", typeof(EditPersonPage));
+                Routing.RegisterRoute("PersonPage", typeof(PersonPage));
+                {
+                    Routing.RegisterRoute("AddTask", typeof(AddTask));
+                }
+            }
             Routing.RegisterRoute("MenegersPage", typeof(MenegersPage));
+            {
+                Routing.RegisterRoute("AddMenegerPage", typeof(AddMenegerPage));
+                Routing.RegisterRoute("EditMenegerPage", typeof(EditMenegerPage));
+            }
 
             if (App.loginpram == 3)
             {
@@ -28,24 +36,19 @@ namespace KPI
             if (App.loginpram == 2)
             {
                 Employee.IsVisible = false;
+                Menegers.IsVisible = false;
             }
             if (App.loginpram == 1)
             {
                 Menegers.IsVisible = false;
                 Employees.IsVisible = false; 
             }
-            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
             Connection.GetConnection().Disconnect();
-            await Shell.Current.GoToAsync("//LoginPage");
-        }
-
-        protected override async void OnNavigated(ShellNavigatedEventArgs args)
-        {
-            base.OnNavigated(args);
+            await AppShell.Current.GoToAsync("//LoginPage");
         }
     }
 }

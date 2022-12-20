@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using System.Xml.Linq;
 using App3.ViewModels;
 using KPI.Models;
 using KPI.ViewModels;
+using KPI.Views;
 using Syncfusion.SfDataGrid.XForms;
 using Xamarin.Essentials;
 
@@ -57,9 +59,9 @@ namespace KPI.Classes
                 App.logineduserid = recvarr[1];
             }
             catch { }
-            if (recvmsg.Contains("root")) { loginpram = 3; }
-            if (recvmsg.Contains("meneger")) { loginpram = 2; }
-            if (recvmsg.Contains("worker")) { loginpram = 1; }
+            if (recvmsg.Contains("root")) { loginpram = 3; PersonPage.isMeneger = true; }
+            if (recvmsg.Contains("meneger")) { loginpram = 2; PersonPage.isMeneger = true; }
+            if (recvmsg.Contains("worker")) { loginpram = 1; PersonPage.isMeneger = false; }
             if (recvmsg.Contains("eror")) { loginpram = 0; }
             return loginpram;
         }
@@ -101,15 +103,16 @@ namespace KPI.Classes
                 Persons person = new Persons();
                 person.upid = int.Parse(recvarr[0]);
                 person.uuid = int.Parse(recvarr[1]);
-                person.name = recvarr[2];
-                person.surname = recvarr[3];
-                person.patronymic = recvarr[4];
-                person.email = recvarr[5];
-                person.telephone = recvarr[6];
-                person.salry = double.Parse(recvarr[7]);
-                if (recvarr[8] != "")
+                person.ueid = int.Parse(recvarr[2]);
+                person.name = recvarr[3];
+                person.surname = recvarr[4];
+                person.patronymic = recvarr[5];
+                person.email = recvarr[6];
+                person.telephone = recvarr[7];
+                person.salry = double.Parse(recvarr[8]);
+                if (recvarr[9] != "")
                 {
-                    person.award = double.Parse(recvarr[8]);
+                    person.award = double.Parse(recvarr[9]);
                 }
                 else person.award = 0;
                 persons.Add(person);
@@ -134,15 +137,16 @@ namespace KPI.Classes
                 Persons person = new Persons();
                 person.upid = int.Parse(recvarr[0]);
                 person.uuid = int.Parse(recvarr[1]);
-                person.name = recvarr[2];
-                person.surname = recvarr[3];
-                person.patronymic = recvarr[4];
-                person.email = recvarr[5];
-                person.telephone = recvarr[6];
-                person.salry = double.Parse(recvarr[7]);
-                if (recvarr[8] != "")
+                person.ueid = int.Parse(recvarr[2]);
+                person.name = recvarr[3];
+                person.surname = recvarr[4];
+                person.patronymic = recvarr[5];
+                person.email = recvarr[6];
+                person.telephone = recvarr[7];
+                person.salry = double.Parse(recvarr[8]);
+                if (recvarr[9] != "")
                 {
-                    person.award = double.Parse(recvarr[8]);
+                    person.award = double.Parse(recvarr[9]);
                 }
                 else person.award = 0;
                 persons.Add(person);
@@ -163,17 +167,18 @@ namespace KPI.Classes
 
             person.upid = int.Parse(recvarr[0]);
             person.uuid = int.Parse(recvarr[1]);
-            person.name = recvarr[2];
-            person.surname = recvarr[3];
-            person.patronymic = recvarr[4];
-            person.salry = double.Parse(recvarr[5]);
-            if (recvarr[6] != "")
+            person.ueid = int.Parse(recvarr[2]);
+            person.name = recvarr[3];
+            person.surname = recvarr[4];
+            person.patronymic = recvarr[5];
+            person.salry = double.Parse(recvarr[6]);
+            if (recvarr[7] != "")
             {
-                person.award = double.Parse(recvarr[6]);
+                person.award = double.Parse(recvarr[7]);
             }
             else person.award = 0;
-            person.email = recvarr[7];
-            person.telephone = recvarr[8];
+            person.email = recvarr[8];
+            person.telephone = recvarr[9];
 
             return person;
         }
@@ -184,20 +189,86 @@ namespace KPI.Classes
             Writer.WriteLine(sendmsg);
             Writer.Flush();
         }
-        public void AddTask(int uuid, string task_text, int count_to_do )
+
+        public void AddTask(int uuid, int upid, int ueid, string task_text, int count_to_do, string start_date, string end_date)
         {
-            string sendmsg = "add_task|&|" + uuid + "|&|" + task_text + "|&|" + count_to_do;
+            string sendmsg = "add_task|&|" + uuid + "|&|" + upid + "|&|" + ueid + "|&|" + task_text + "|&|" + count_to_do + "|&|" + 0 + "|&|" + start_date + "|&|" + end_date;
             Writer.WriteLine(sendmsg);
             Writer.Flush();
         }
 
-        public ObservableCollection<Task> GetTasks(int uuid)
+        public ObservableCollection<PersonTask> GetTasks(int uuid)
         {
-            ObservableCollection<Task> tasks = new ObservableCollection<Task>();
-            string sendmsg = "select_task|&|" + uuid.ToString();
+            string sendmsg = "select_task_by_uuid|&|" + uuid.ToString();
             Writer.WriteLine(sendmsg);
             Writer.Flush();
+
+            ObservableCollection<PersonTask> tasks = new ObservableCollection<PersonTask>();
+            string[] recvarr;
+            string recvmsg = Reader.ReadLine();
+            int count = int.Parse(recvmsg);
+            for (int i = 0; i < count; i++)
+            {
+                recvmsg = Reader.ReadLine();
+                recvarr = recvmsg.Split('&');
+
+                PersonTask task = new PersonTask();
+                task.utid = int.Parse(recvarr[0]);
+                task.ueid = int.Parse(recvarr[1]);
+                task.uuid = int.Parse(recvarr[2]);
+                task.upid = int.Parse(recvarr[3]);
+                task.task_Text = recvarr[4];
+                task.count_to_do = int.Parse(recvarr[5]);
+                task.task_start_date = DateTime.ParseExact(recvarr[6].ToString(), "dd.MM.yyyy", null);
+                task.task_end_date = DateTime.ParseExact(recvarr[7].ToString(), "dd.MM.yyyy", null);
+                task.count_of_complited = int.Parse(recvarr[8]);
+
+                tasks.Add(task);
+            }
             return tasks;
+        }
+
+        public void UpdateTask(int utid, int uuid, string compl)
+        {
+            string sendmsg = "update_task|&|" + utid + "|&|" + uuid + "|&|" + compl;
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+        }
+
+        public List<double> KPI (int uuid, double salary)
+        {
+            double tmp1 = 0, tmp2 = 0;
+            string[] recvarr;
+            string recvmsg;
+            string sendmsg = "kpi|&|" + uuid + "|&|" + salary;
+            Writer.WriteLine(sendmsg);
+            Writer.Flush();
+
+            List<double> ret = new List<double>();
+            recvmsg = Reader.ReadLine();
+            recvarr = recvmsg.Split('&');
+
+            if (recvarr[0].Length > 5)
+            {
+                tmp1 = double.Parse(recvarr[0].Remove(5)) / (double)100;
+            }
+            else
+            {
+                tmp1 = double.Parse(recvarr[0]) / (double)100;
+            }
+
+            if (recvarr[1].Length > 4)
+            {
+                tmp2 = double.Parse(recvarr[1].Remove(4)) / (double)100;
+            }
+            else
+            {
+                tmp2 = double.Parse(recvarr[1]) / (double)1000;
+            }
+
+            ret.Add(tmp1);
+            ret.Add(tmp2);
+            return ret;
         }
 
         public void Disconnect()

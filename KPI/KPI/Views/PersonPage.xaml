@@ -235,6 +235,20 @@
                                       TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
                                                                   Light = {StaticResource AccentTextLight}}"
                                       />
+                    <!--PlusOne button-->
+                    <buttons:SfButton x:Name="plsoneButton"
+                                      Clicked="plsoneButton_Clicked"
+                                      WidthRequest="180"
+                                      HeightRequest="60"
+                                      Margin="20"
+                                      CornerRadius="6"
+                                      FlexLayout.Order="1"
+                                      Text="Отметить выполнение"
+                                      BackgroundColor="{AppThemeBinding Dark = {StaticResource AccentDark},
+                                                                        Light = {StaticResource AccentLight}}"
+                                      TextColor="{AppThemeBinding Dark = {StaticResource AccentTextDark},
+                                                                  Light = {StaticResource AccentTextLight}}"
+                                      />
                 </FlexLayout>
             </Frame>
             <Frame Margin="10"
@@ -246,18 +260,23 @@
                     <syncfusion:SfDataGrid x:Name="person_tasksGrid"
                                            GridStyle="{StaticResource customStyle}"
                                            AllowColumnSelection="True"
-                                           SelectionMode="SingleDeselect"
+                                           SelectionMode="Multiple"
                                            SelectionUnit="Row"
                                            AllowSorting="True"
                                            AllowTriStateSorting="True"
                                            CanUseViewFilter="True"
-                                           ColumnSizer="Star">
+                                           ColumnSizer="Star"
+                                           GridTapped="person_tasksGrid_GridTapped">
                         <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn HeaderText="utid" MappingName="utid" IsHidden="True"/>
+                            <syncfusion:GridTextColumn HeaderText="uuid" MappingName="uuid" IsHidden="True"/>
+                            <syncfusion:GridTextColumn HeaderText="ueid" MappingName="ueid" IsHidden="True"/>
+                            <syncfusion:GridTextColumn HeaderText="upid" MappingName="upid" IsHidden="True"/>
                             <syncfusion:GridTextColumn HeaderText="Задача" MappingName="task_Text"/>
                             <syncfusion:GridTextColumn HeaderText="Нужно выполнить" MappingName="count_to_do"/>
                             <syncfusion:GridTextColumn HeaderText="Выполненно" MappingName="count_of_complited"/>
-                            <syncfusion:GridTextColumn HeaderText="Начальная дата" MappingName="task_start_date"/>
-                            <syncfusion:GridTextColumn HeaderText="Крайний срок" MappingName="task_end_date"/>
+                            <syncfusion:GridDateTimeColumn HeaderText="Начальная дата" MappingName="task_start_date" Format="dd.MM.yyyy"/>
+                            <syncfusion:GridDateTimeColumn HeaderText="Крайний срок" MappingName="task_end_date" Format="dd.MM.yyyy"/>
                         </syncfusion:SfDataGrid.Columns>
                     </syncfusion:SfDataGrid>
                     <sfDataPager:SfDataPager x:Name="sfDataPager"

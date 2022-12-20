@@ -31,17 +31,24 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Connection connection = Connection.GetConnection();
-            bool tmp = connection.AddPerson(loginEdit.Value as string, passwordEdit.Value as string, nameEdit.Value as string, surnameEdit.Value as string, patronymicEdit.Value as string, emailEdit.Value as string, telephoneEdit.Value as string, "worker", salaryEdit.Value as string);
-
-            if (tmp)
+            if (loginEdit.Value.ToString() != "" && passwordEdit.Value.ToString() != "" && nameEdit.Value.ToString() != "" && surnameEdit.Value.ToString() != "" && patronymicEdit.Value.ToString() != "" && salaryEdit.Value.ToString() != "" && emailEdit.Value.ToString() != "" && telephoneEdit.Value.ToString() != "")
             {
-                Shell.Current.GoToAsync("//PersonnelPage");
+                Connection connection = Connection.GetConnection();
+                bool tmp = connection.AddPerson(loginEdit.Value as string, passwordEdit.Value as string, nameEdit.Value as string, surnameEdit.Value as string, patronymicEdit.Value as string, emailEdit.Value as string, telephoneEdit.Value as string, "worker", salaryEdit.Value as string);
+
+                if (tmp)
+                {
+                    Shell.Current.GoToAsync("//PersonnelPage");
+                }
+                else
+                {
+                    App.Current.MainPage.DisplayAlert("Ошибка добавления", "Запись не внесена в базу данных", "Ок");
+                    Shell.Current.GoToAsync("//PersonnelPage");
+                }
             }
             else
             {
-                App.Current.MainPage.DisplayAlert("Ошибка добавления", "Запись не внесена в базу данных", "Ок");
-                Shell.Current.GoToAsync("//PersonnelPage");
+                App.Current.MainPage.DisplayAlert("Ошибка ввода", "Данные введены неверно", "Ок");
             }
         }
     }

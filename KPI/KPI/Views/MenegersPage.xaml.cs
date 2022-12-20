@@ -28,7 +28,7 @@ namespace KPI.Views
 
         private void addButton_Clicked(object sender, EventArgs e)
         {
-            Shell.Current.GoToAsync("AddMenegerPage");
+            AppShell.Current.GoToAsync("AddMenegerPage");
         }
 
         private void deleteButton_Clicked(object sender, EventArgs e)
@@ -47,9 +47,8 @@ namespace KPI.Views
 
         private void updateButton_Clicked(object sender, EventArgs e)
         {
-
             EditMenegerPage.person = menegerGrid.SelectedItem as Persons;
-            Shell.Current.GoToAsync("EditMenegerPage");
+            AppShell.Current.GoToAsync("EditMenegerPage");
         }
 
         private void ContentPage_Appearing(object sender, EventArgs e)
@@ -61,25 +60,28 @@ namespace KPI.Views
             menegerGrid.ItemsSource = sfDataPager.PagedSource;
         }
 
-        private void menegerGrid_SelectionChanged(object sender, Syncfusion.SfDataGrid.XForms.GridSelectionChangedEventArgs e)
+        private void menegerGrid_GridTapped(object sender, Syncfusion.SfDataGrid.XForms.GridTappedEventArgs e)
         {
-            if (menegerGrid.SelectionController.SelectedRows.Count == 0)
+            if (e.RowColumnIndex.RowIndex != 0)
             {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = false;
-                updateButton.IsVisible = false;
-            }
-            if (menegerGrid.SelectionController.SelectedRows.Count == 1)
-            {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = true;
-                updateButton.IsVisible = true;
-            }
-            if (menegerGrid.SelectionController.SelectedRows.Count > 1)
-            {
-                addButton.IsVisible = true;
-                deleteButton.IsVisible = true;
-                updateButton.IsVisible = false;
+                if (menegerGrid.SelectionController.SelectedRows.Count == 0)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = false;
+                    updateButton.IsVisible = false;
+                }
+                if (menegerGrid.SelectionController.SelectedRows.Count == 1)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = true;
+                    updateButton.IsVisible = true;
+                }
+                if (menegerGrid.SelectionController.SelectedRows.Count > 1)
+                {
+                    addButton.IsVisible = true;
+                    deleteButton.IsVisible = true;
+                    updateButton.IsVisible = false;
+                }
             }
         }
     }

@@ -115,10 +115,12 @@
                                            AllowSorting="True"
                                            AllowTriStateSorting="True"
                                            ColumnSizer="Star"
-                                           SelectionChanged="personsGrid_SelectionChanged">
+                                           GridTapped="personsGrid_GridTapped"
+                                           ShowRowHeader="False">
                         <syncfusion:SfDataGrid.Columns>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UUID" MappingName="uuid"/>
                             <syncfusion:GridTextColumn IsHidden="True" HeaderText="UPID" MappingName="upid"/>
+                            <syncfusion:GridTextColumn IsHidden="True" HeaderText="UEID" MappingName="ueid"/>
                             <syncfusion:GridTextColumn HeaderText="Имя" MappingName="name"/>
                             <syncfusion:GridTextColumn HeaderText="Фамилия" MappingName="surname"/>
                             <syncfusion:GridTextColumn HeaderText="Отчество" MappingName="patronymic"/>
